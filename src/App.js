@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { useState } from "react";
 
 function App() {
+
+  const [todos, setTodos] = useState([
+    { title: "go to school" },
+    { title: "go back home" },
+    { title: "play Dota" },
+  ])
+  const [newTodo, setNewTodo] = useState("")
+
+  const addTodo = (e) => {
+    e.preventDefault()
+    setTodos(
+      [...todos,
+      { title: newTodo }]
+    )
+    setNewTodo("");
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <form onSubmit={addTodo}>
+        <input onChange={(e) => setNewTodo(e.target.value)} type="text" placeholder="Add Todo here" value={newTodo} />
+        <button type="submit">
+          Add new Todo!
+        </button>
+      </form>
+      {todos.map((singleTodo, index) => <p key={index}>{singleTodo.title}</p>)}
+    </>
+  )
 }
 
 export default App;

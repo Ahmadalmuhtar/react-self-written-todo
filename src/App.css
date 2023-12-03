@@ -28,6 +28,10 @@
   color: #61dafb;
 }
 
+.form-background {
+  background-color: burlywood;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
